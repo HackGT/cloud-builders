@@ -1,17 +1,15 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 trigger_beehive_build() {
-    body='{
-    "request": {
-    "branch":"master"
-    } }'
+    body="{
+    \"repo\":\"hackgt/${REPO_NAME}\"
+     }"
 
     curl -s -X POST \
          -H "Content-Type: application/json" \
          -H "Accept: application/json" \
-         -H "Travis-API-Version: 3" \
-         -H "Authorization: token ${TRAVIS_TOKEN}" \
+         -H "Authorization: ${TRAVIS_TOKEN}" \
          -d "$body" \
-         https://api.travis-ci.org/repo/HackGT%2fbiodomes/requests
+         https://beekeeper.hack.gt/api/version_updates
 }
 trigger_beehive_build
